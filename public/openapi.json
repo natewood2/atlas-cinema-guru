@@ -1,0 +1,358 @@
+{
+    "openapi": "3.0.2",
+    "info": {
+        "title": "Movie Titles - API",
+        "description": "This is the API for the cinema guru application.",
+        "version": "1.0.0"
+    },
+    "externalDocs": {
+        "description": "Find out more about Swagger",
+        "url": "http://swagger.io"
+    },
+    "tags": [],
+    "paths": {
+        "/api/titles": {
+            "get": {
+                "tags": [
+                    "Titles"
+                ],
+                "summary": "Get list of movie titles",
+                "description": "Get list of movire titles",
+                "operationId": "getTitles",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "page",
+                        "description": "Page number",
+                        "schema": {
+                            "type": "number"
+                        },
+                        "example": 1
+                    },
+                    {
+                        "in": "query",
+                        "name": "minYear",
+                        "description": "Minimum year of movie release",
+                        "schema": {
+                            "type": "number"
+                        },
+                        "example": 1970
+                    },
+                    {
+                        "in": "query",
+                        "name": "maxYear",
+                        "description": "Maximum year of movie release",
+                        "schema": {
+                            "type": "number"
+                        },
+                        "example": 2024
+                    },
+                    {
+                        "in": "query",
+                        "name": "genres",
+                        "description": "Comma seperate lis of movie genres",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "Sci-Fi,Mystery"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "titles": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/MovieTitle"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/favorites": {
+            "get": {
+                "tags": [
+                    "Favorites"
+                ],
+                "summary": "Get list of movie titles favorited by logged in user",
+                "description": "Get list of movire titles favorited by logged in user",
+                "operationId": "getFavorites",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "page",
+                        "description": "Page number",
+                        "schema": {
+                            "type": "number"
+                        },
+                        "example": 1
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "titles": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/MovieTitle"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/favorites/{id}": {
+            "post": {
+                "tags": [
+                    "Favorites"
+                ],
+                "summary": "Add a movie titles to a users favorites list",
+                "description": "Add a movie titles to a users favorites list",
+                "operationId": "createFavorites",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "Movie title id",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "49c1b993-3980-4324-aa57-8bcd0bff0ab5"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Favorite Added"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Favorites"
+                ],
+                "summary": "Remove a movie titles to a users favorites list",
+                "description": "Remove a movie titles to a users favorites list",
+                "operationId": "removeFavorites",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "Movie title id",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "49c1b993-3980-4324-aa57-8bcd0bff0ab5"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Favorite removed"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/watch-later": {
+            "get": {
+                "tags": [
+                    "Watch Later"
+                ],
+                "summary": "Get list of movie titles added by logged in user to their watch later list",
+                "description": "Get list of movie titles added by logged in user to their watch later list",
+                "operationId": "getWatchLater",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "page",
+                        "description": "Page number",
+                        "schema": {
+                            "type": "number"
+                        },
+                        "example": 1
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "titles": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/MovieTitle"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/watch-later/{id}": {
+            "post": {
+                "tags": [
+                    "Watch Later"
+                ],
+                "summary": "Add a movie titles to a users watch later list",
+                "description": "Add a movie titles to a users watch later list",
+                "operationId": "createWatchLater",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "Movie title id",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "49c1b993-3980-4324-aa57-8bcd0bff0ab5"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Watch Later Added"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Watch Later"
+                ],
+                "summary": "Remove a movie titles to a users watch later list",
+                "description": "Remove a movie titles to a users watch later list",
+                "operationId": "removeWatchLater",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "Movie title id",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "49c1b993-3980-4324-aa57-8bcd0bff0ab5"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Watch Later removed"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "MovieTitle": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "example": "038fddca-61d3-4ccd-be11-f17a7fe39fdc"
+                    },
+                    "title": {
+                        "type": "string",
+                        "example": "Echo Valley"
+                    },
+                    "synopsis": {
+                        "type": "string",
+                        "example": "Suspendisse sed facilisis tortor, nec ornare eros. Maecenas ut ullamcorper velit, nec efficitur dui. Nullam vulputate sapien nec tincidunt varius."
+                    },
+                    "released": {
+                        "type": "number",
+                        "example": "2023"
+                    },
+                    "genre": {
+                        "type": "string",
+                        "example": "Mystery"
+                    },
+                    "favorited": {
+                        "type": "boolean",
+                        "example": false
+                    },
+                    "watchLater": {
+                        "type": "boolean",
+                        "example": true
+                    },
+                    "image": {
+                        "type": "string",
+                        "example": "/images/038fddca-61d3-4ccd-be11-f17a7fe39fdc.webp"
+                    }
+                }
+            }
+        }
+    }
+}
