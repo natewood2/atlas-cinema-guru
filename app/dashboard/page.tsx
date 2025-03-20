@@ -15,18 +15,16 @@ interface Movie {
 }
 
 const COMMON_GENRES = [
-  "Action",
-  "Adventure",
-  "Comedy",
-  "Crime",
-  "Drama",
-  "Fantasy",
-  "Horror",
-  "Mystery",
   "Romance",
-  "Sci-Fi",
+  "Horror",
+  "Drama",
+  "Action",
+  "Mystery",
+  "Fantasy",
   "Thriller",
   "Western",
+  "Sci-Fi",
+  "Adventure"
 ];
 
 export default function MoviesPage() {
