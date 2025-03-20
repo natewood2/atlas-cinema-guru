@@ -1,6 +1,6 @@
 "use client";
 
-import { signIn } from "@/auth";
+import { signIn } from "next-auth/react";
 import Image from "next/image";
 import { useState } from "react";
 
@@ -10,9 +10,9 @@ export default function LoginPage() {
   const handleGitHubSignIn = async () => {
     setIsLoading(true);
     try {
-      await signIn("github", { redirectTo: "/" });
+      await signIn("github", { callbackUrl: "/" });
     } catch (error) {
-      console.error("Sign in error:", error);
+      console.error("Sign in error", error);
       setIsLoading(false);
     }
   };
